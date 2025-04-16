@@ -9,7 +9,7 @@ Filter and give data to system Managment Dashbords
 
 ## Features
  
-- [ ] read logs from different systems via api 
+- [ ] read logs from different systems via api
 - [ ] analyze and filter logs 
 - [ ] permanet filter rules
 - [ ] simple UI
@@ -21,12 +21,24 @@ Filter and give data to system Managment Dashbords
 - [ ] client agent (set up which logs in which intervals get set via generate script)
 ## Tech Stack
 
+- Docker
+
 **Server/Backend**
-- Node 
+- Node
+- Express JS
+- Typescript
+
+**Frontend**
+- EJS
+- alpine js
+- Tailwind css
+
+**Databses**
+- MariaDB/Redis
 
 ## Documentation
 
-[Documentation](https://linktodocumentation)
+[Documentation]()
 
 
 ## Environment Variables
