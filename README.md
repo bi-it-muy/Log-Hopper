@@ -29,7 +29,6 @@ Filter and give data to system Managment Dashbords
 - Typescript
 
 **Frontend**
-- EJS
 - alpine js
 - Tailwind css
 
