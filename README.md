@@ -4,7 +4,7 @@
 
 # Log Hopper
 
-Filter and give data to system Managment Dashbords
+**Log Hopper** is a log collection, filtering, and forwarding system designed to gather logs from various systems, apply user-defined filtering and analysis rules, and forward relevant data to external monitoring dashboards such as **Checkmk**, **Zabbix**, and **Prometheus**. It must include a user interface for rule management and account control.
 
 
 ## Features
@@ -14,7 +14,7 @@ Filter and give data to system Managment Dashbords
 - [ ] permanet filter rules
 - [ ] simple UI
 - [ ] User Authentication and Authorization
-- [ ] prepare filtered logs for checkmk, zabbix and grafana 
+- [ ] prepare filtered logs for checkmk, zabbix and Prometheus 
 - [ ] send logs as usable data to those systems  
 
 ## Roadmap
@@ -37,7 +37,7 @@ Filter and give data to system Managment Dashbords
 
 ## Documentation
 
-[Documentation]()
+[Documentation](./docs/index.md)
 
 
 ## Environment Variables
