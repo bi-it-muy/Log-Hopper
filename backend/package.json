@@ -4,14 +4,19 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build" : "tsc --build",
-    "dev" : "nodemon ./src/index.ts"
+    "debug" : "nodemon ./src/index.ts --inspect",
+    "build": "tsc --build",
+    "dev": "nodemon ./src/index.ts"
   },
   "author": "Yannick Mueller",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^5.1.0"
+    "@types/crypto-js": "^4.2.2",
+    "crypto-js": "^4.2.0",
+    "express": "^5.1.0",
+    "mariadb": "^3.4.2",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "@types/express": "^5.0.1",
