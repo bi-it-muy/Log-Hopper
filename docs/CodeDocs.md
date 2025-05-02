@@ -10,7 +10,7 @@ The `DatabaseManager` class provides an interface for connecting to a MariaDB da
 (async () => {
     const dbManager = new DatabaseManager('your_db_name', 'your_password', 'your_user', 'your_host');
     try {
-        const result = await dbManager.executeQuery('Your qurry');
+        const result = await dbManager.executeQuery("SELECT ? FROM ?" [ID, Users]);
         console.log("Query result:", result);
     } catch (error) {
         console.error("Database operation failed:", error);
