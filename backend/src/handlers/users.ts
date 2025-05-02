@@ -10,7 +10,7 @@ export function authCheck(req : Request, res : Response, next : NextFunction) {
 }
 
 export async function getUsers(req : Request, res : Response) {
-    const response = await manager.executeQuery("SELECT userName, email FROM `users`")
+    const response = await manager.executeQuery("SELECT userName, email FROM `users`", [])
     res.status(200).send(response)
 }
 

@@ -24,8 +24,8 @@ export async function login(req: Request, res: Response, next : NextFunction) {
 
     try {
         // Query to find the user by username or email
-        const query = `SELECT * FROM users WHERE userName = "${userObj.userName}";`;
-        const users = await manager.executeQuery(query);
+        const query = `SELECT * FROM users WHERE userName = ?`;
+        const users = await manager.executeQuery(query, [userObj.userName]);
 
         if (users.length == 0) {
             res.json({ "Error": "Invalid username or password" });
@@ -54,16 +54,16 @@ export async function login(req: Request, res: Response, next : NextFunction) {
 }
 //Get Function
 export function authStatus(req : Request, res : Response) {
-    //TODO: Write login status tracker
+    //1 TODO: Write login status tracker
 
     
 }
 
 //Post Function
 export function logout(req : Request, res : Response) {
-    //TODO: Write logout Function
+    //1 TODO: Write logout Function
 }
 //Post Function
 export function reset(req : Request, res : Response) {
-    //TODO: Write a password Reset Function
+    //1 TODO: Write a password Reset Function
 }
