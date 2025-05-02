@@ -11,3 +11,5 @@ For best quallity API Docs please use the auto genareated swagger docs
 ---
 
 ### [Software architecture](./softwareArchitecture.md) 
+
+### [Code Documentation](./CodeDocs.md)
