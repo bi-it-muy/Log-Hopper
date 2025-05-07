@@ -59,7 +59,7 @@ class DatabaseManager {
      * @returns A Promise that resolves to the query result.
      * @throws If the query execution fails, the error is logged and rethrown.
      */
-    async executeQuery(query: string, list: unknown[]) {
+    async executeQuery(query: string, list: unknown[] = []) {
         let connection;
         try {
             connection = await this.conn();
