@@ -2,8 +2,8 @@ import express, { NextFunction, Request, Response, json } from 'express'
 import  cors  from 'cors'
 import swaggerUi from "swagger-ui-express"
 import SwaggerDocument from "./api-doc/swagger-output.json"
-import { deleteUsers, getUsers, postUsers, putUsers, authCheck, getUsersById } from './routes/users';
-import { login, logout, reset, authStatus } from './routes/auth';
+import { deleteUsers, getUsers, postUsers, putUsers, getUsersById } from './routes/users';
+import { login, logout, reset, authStatus, authCheck } from './routes/auth';
 import configObj from './utils/config';
 import { postMetrics } from './routes/metrics';
 import session from "express-session";
@@ -29,7 +29,7 @@ const authRouter = express.Router();
 
 authRouter.use("/api", apiRouter)
 authRouter.use(cors())
-apiRouter.use(authCheck)
+//TODO: Uncoment when done apiRouter.use(authCheck)
 
 app.use("/auth", authRouter)
 
@@ -47,11 +47,10 @@ apiRouter.post("/users", postUsers)
 
 apiRouter.put("/users/:id", putUsers)
 
-apiRouter.delete("/users", deleteUsers)
+apiRouter.delete("/users/:id", deleteUsers)
 
 apiRouter.post("/metrics", postMetrics)
 
-apiRouter.use(authCheck)
 
 
 

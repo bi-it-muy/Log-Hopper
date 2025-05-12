@@ -1,13 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import { DatabaseManager } from "../utils/db"
+import { verify } from "jsonwebtoken";
 
 const manager = new DatabaseManager("log_hopper_db", "","root", "localhost")
 
-export function authCheck(req : Request, res : Response, next : NextFunction) {
-    //TODO: Token checker code
-    console.log("hello from auth check")
-    next()
-}
 
 
 export async function getUsers(req : Request, res : Response) {
@@ -74,7 +70,7 @@ export async function putUsers(req : Request, res : Response) {
             res.status(404).json({ "Error": "User  not found." });
             return
         }
-        // TODO: write the insert manager
+        manager.executeQuery('INSERT INTO USERS (userName, email, password, rolepower) VALUES (?, ?, ?, ?)', [reqBody.userName, reqBody.email, reqBody, reqBody.password, reqBody.rolePower])
         console.log("Insert Here")
         res.sendStatus(200)
     } catch (error) {
@@ -85,5 +81,14 @@ export async function putUsers(req : Request, res : Response) {
 }
 
 export function deleteUsers(req : Request, res : Response) {
+
+    const userId = req.params.id
+    console.log(userId)
+    
+    if (userId) {
+        manager.executeQuery('DELETE FROM users WHERE UserID=?', [userId])
+
+        res.status(200).json({"msg" : "deleted"})
+    }
 
 }
