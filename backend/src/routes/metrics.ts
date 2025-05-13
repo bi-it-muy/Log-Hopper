@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { DatabaseManager } from "../utils/db"
+import  "prom-client"
 import {UploadedFile, FileArray, } from "express-fileupload" 
 import fs from "fs"
 import path from "path"
