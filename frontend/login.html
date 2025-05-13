@@ -6,7 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="javascript.js"></script>
+    <script>
+        async function Login(route) {
+            const InUserName = document.querySelector("#UsernameInput").value;
+            const InPassword = document.querySelector("#PasswordInput").value;
+            const url = `http://localhost:3000${route}`;
+        
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ userName: InUserName, password: InPassword }),
+                });
+        
+                if (!response.ok) {
+                    alert("Login failed. Please check your credentials.");
+                    return;
+                }
+        
+                const data = await response.json();
+                localStorage.setItem("token", data.token); // Save token for future requests
+                alert("Login successful!");
+                window.location.href = "index.html"; // Redirect to the dashboard
+            } catch (error) {
+                console.error("Login error:", error);
+                alert("An error occurred during login.");
+            }
+        }
+        </script>
 </head>
 
 <body>

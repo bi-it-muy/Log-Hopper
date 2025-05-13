@@ -42,11 +42,16 @@
 
 ## Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file
+To run this project, you will need to add the following environment variables to your config.json file as string
 
-`API_KEY`
+`DB_NAME`
+`DB_HOST`
+`DB_USER`
+`DB_PASSWORD`
+`DB_IP`
+`FRONTEND_IP`
+`PORT`
 
-`ANOTHER_API_KEY`
 
 
 ## Installation
