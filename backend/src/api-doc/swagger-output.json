@@ -181,22 +181,6 @@
         }
       }
     },
-    "/api/metrics": {
-      "post": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        }
-      }
-    },
     "/auth/login": {
       "post": {
         "description": "",

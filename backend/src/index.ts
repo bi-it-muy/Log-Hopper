@@ -5,8 +5,9 @@ import SwaggerDocument from "./api-doc/swagger-output.json"
 import { deleteUsers, getUsers, postUsers, putUsers, getUsersById } from './routes/users';
 import { login, logout, reset, authStatus, authCheck } from './routes/auth';
 import configObj from './utils/config';
-import { postMetrics } from './routes/metrics';
+import { postMetrics, upload } from './routes/metrics';
 import session from "express-session";
+import fileUpload, {UploadedFile} from "express-fileupload"
 
 
 const config = configObj()
@@ -19,17 +20,17 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: false } // true if using HTTPS
 }));
-
-
+app.use(fileUpload())
 
 //Routers
 const apiRouter = express.Router();
 const authRouter = express.Router();
 
 
+
 authRouter.use("/api", apiRouter)
 authRouter.use(cors())
-//TODO: Uncoment when done apiRouter.use(authCheck)
+apiRouter.use(authCheck)
 
 app.use("/auth", authRouter)
 
@@ -49,8 +50,19 @@ apiRouter.put("/users/:id", putUsers)
 
 apiRouter.delete("/users/:id", deleteUsers)
 
-apiRouter.post("/metrics", postMetrics)
 
+//Metrics
+// apiRouter.post("/metrics", postMetrics)
+
+// apiRouter.post("/metrics/upload", upload)
+
+// apiRouter.post("/metrics/settings")
+
+// apiRouter.put("/metrics/settings")
+
+// apiRouter.get("/metrics/settings")
+
+// apiRouter.delete("/metrics/settings")
 
 
 
@@ -62,6 +74,7 @@ authRouter.post("/logout", logout)
 authRouter.post("/reset", reset)
 
 authRouter.get("/status", authStatus)
+
 
 
 

@@ -6,6 +6,70 @@
     <title>Settings</title>
 </head>
 <body>
-    
+    <div id="settings-container">
+        <h1>Settings</h1>
+        <ul id="settings-list"></ul>
+        <form id="settings-form">
+            <input type="text" id="key" placeholder="Key" required />
+            <input type="text" id="value" placeholder="Value" required />
+            <button type="submit">Add/Update Setting</button>
+        </form>
+    </div>
+
+    <script>
+        async function fetchSettings() {
+            const token = localStorage.getItem("token");
+            try {
+                const response = await fetch("http://localhost:3000/api/metrics/settings", {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch settings");
+                }
+
+                const settings = await response.json();
+                const settingsList = document.getElementById("settings-list");
+                settingsList.innerHTML = "";
+                settings.forEach(setting => {
+                    const li = document.createElement("li");
+                    li.textContent = `${setting.key}: ${setting.value}`;
+                    settingsList.appendChild(li);
+                });
+            } catch (error) {
+                console.error("Error fetching settings:", error);
+            }
+        }
+
+        document.getElementById("settings-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const token = localStorage.getItem("token");
+            const key = document.getElementById("key").value;
+            const value = document.getElementById("value").value;
+
+            try {
+                const response = await fetch("http://localhost:3000/api/metrics/settings", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({ key, value }),
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to update setting");
+                }
+
+                alert("Setting updated successfully!");
+                fetchSettings();
+            } catch (error) {
+                console.error("Error updating setting:", error);
+            }
+        });
+
+        // Fetch settings on page load
+        fetchSettings();
+    </script>
 </body>
 </html>

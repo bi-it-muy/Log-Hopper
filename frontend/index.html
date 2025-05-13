@@ -3,11 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard Template</title>
+  <title>Dashboard</title>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("You are not logged in. Redirecting to login page.");
+        window.location.href = "login.html";
+        return;
+      }
+
+      try {
+        const response = await fetch("http://localhost:3000/auth/status", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (!response.ok) {
+          alert("Session expired. Please log in again.");
+          localStorage.removeItem("token");
+          window.location.href = "login.html";
+          return;
+        }
+
+        const data = await response.json();
+        document.querySelector("[x-text='user']").textContent = data.userName || "Unknown User";
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    });
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100" x-data="{ user: 'Loading...' }">
+<body class="bg-gray-100" x-data="{ user: 'Loading...', filteredData: [] }">
 
   <!-- Top Bar -->
   <header class="bg-white shadow p-4 flex justify-between items-center">
@@ -24,19 +52,40 @@
     <aside class="w-64 bg-white border-r hidden md:block">
       <nav class="p-4 space-y-2">
         <a href="#" class="block py-2 px-4 rounded hover:bg-gray-100 text-gray-700 font-medium">Dashboard</a>
-        <a href="#" class="block py-2 px-4 rounded hover:bg-gray-100 text-gray-700">Settings</a>
+        <a href="./settings.html" class="block py-2 px-4 rounded hover:bg-gray-100 text-gray-700">Settings</a>
       </nav>
     </aside>
 
     <!-- Main Content -->
     <main class="flex-1 p-6 space-y-8">
 
-      <!-- Data Section -->
+      <!-- Filtered Data Section -->
       <section>
-        <h2 class="text-lg font-semibold mb-4">Recent Data</h2>
+        <h2 class="text-lg font-semibold mb-4">Filtered Data</h2>
         <div class="bg-white rounded shadow p-4">
-          <!-- Placeholder for dynamic data -->
-          <p class="text-gray-500">Data will appear here...</p>
+          <template x-if="filteredData.length > 0">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr>
+                  <th class="border-b p-2">Field</th>
+                  <th class="border-b p-2">Operator</th>
+                  <th class="border-b p-2">Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <template x-for="item in filteredData" :key="item.id">
+                  <tr>
+                    <td class="border-b p-2" x-text="item.field"></td>
+                    <td class="border-b p-2" x-text="item.operator"></td>
+                    <td class="border-b p-2" x-text="item.value"></td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </template>
+          <template x-if="filteredData.length === 0">
+            <p class="text-gray-500">No data matches the filter criteria.</p>
+          </template>
         </div>
       </section>
 
@@ -46,25 +95,62 @@
         <div class="bg-white rounded shadow p-4 grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label class="block mb-1 text-sm font-medium">Field</label>
-            <select class="w-full border-gray-300 rounded">
-
+            <select class="w-full border-gray-300 rounded" id="field">
             </select>
           </div>
           <div>
             <label class="block mb-1 text-sm font-medium">Operator</label>
-            <select class="w-full border-gray-300 rounded">
+            <select class="w-full border-gray-300 rounded" id="operator">
+              <option value="Contains">Contains</option>
+
             </select>
           </div>
           <div>
             <label class="block mb-1 text-sm font-medium">Value</label>
-            <input type="text" class="w-full border-gray-300 rounded" />
+            <input type="text" class="w-full border-gray-300 rounded" id="value" />
           </div>
         </div>
-        <button class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Apply Filter</button>
+        <button
+          class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          @click="applyFilter"
+        >
+          Apply Filter
+        </button>
       </section>
 
+      <script>
+        document.addEventListener('alpine:init', () => {
+          Alpine.data('filterApp', () => ({
+            filteredData: [],
+            async applyFilter() {
+              const field = document.getElementById('field').value;
+              const operator = document.getElementById('operator').value;
+              const value = document.getElementById('value').value;
+
+              try {
+                const token = localStorage.getItem('token');
+                const response = await fetch('http://localhost:3000/api/filters', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                  },
+                  body: JSON.stringify({ field, operator, value }),
+                });
+
+                if (!response.ok) {
+                  throw new Error('Failed to fetch filtered data');
+                }
+
+                this.filteredData = await response.json();
+              } catch (error) {
+                console.error('Error applying filter:', error);
+              }
+            },
+          }));
+        });
+      </script>
     </main>
   </div>
-
 </body>
 </html>

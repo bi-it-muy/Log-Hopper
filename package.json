@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "express-fileupload": "^1.5.1",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@types/express-fileupload": "^1.5.1"
+  }
+}

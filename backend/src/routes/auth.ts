@@ -5,9 +5,6 @@ import { createHash } from "crypto"
 
 
 
-
-
-
 const SECRET_KEY = "your_jwt_secret"; // Store this in an env var for production
 const manager = new DatabaseManager("log_hopper_db", "", "root", "localhost");
 
@@ -16,7 +13,7 @@ export async function authCheck(req: Request, res: Response, next: NextFunction)
     const token = authHeader && authHeader.split(' ')[1];
 
     if (!token) {
-        res.sendStatus(401); // Token missing
+        res.status(401).json({ error: "Token missing" }); // Deny access if token is missing
         return;
     }
 
@@ -24,31 +21,26 @@ export async function authCheck(req: Request, res: Response, next: NextFunction)
         const decoded = verify(token, SECRET_KEY) as { userId: string };
 
         if (!decoded.userId) {
-            res.sendStatus(403); // Malformed token
+            res.status(403).json({ error: "Malformed token" }); // Deny access if token is malformed
             return;
         }
 
-        // Log decoded userId and token to check the values
-        console.log('Decoded User ID:', decoded.userId);
-        console.log('Token:', token);
-
-        // Execute the query to check if the token exists for the user
+        // Check if the token exists in the database for the user
         const check = await manager.executeQuery(
             'SELECT 1 FROM TOKENS WHERE UserID = ? AND TokenValue = ? LIMIT 1',
             [decoded.userId, token]
         );
 
-        // Log the query result to understand what it's returning
-        console.log('Query Result:', check);
-
-        if (check.length === 0) {
-            throw new Error("Token not found");
+        if (check[0].length === 0) {
+            res.status(403).json({ error: "Token not found in database" }); // Deny access if token is not in the database
+            return;
         }
 
+        // Token is valid and exists in the database
         next();
     } catch (err) {
-        console.error('Error:', err);
-        res.status(403).json({'Error' : 'Token not found in Database'});
+        console.error('Error verifying token:', err);
+        res.status(403).json({ error: "Invalid or expired token" }); // Deny access if token verification fails
         return;
     }
 }
@@ -110,7 +102,8 @@ export async function login(req: Request, res: Response, next: NextFunction) {
 
         }
 
-        // Create JWT token
+        // Generate JWT token
+
 
         const TokenPayload = {
             userId: user.UserID 
@@ -120,6 +113,7 @@ export async function login(req: Request, res: Response, next: NextFunction) {
         console.log(token)
 
         // Send response
+        manager.executeQuery('INSERT INTO TOKENS (UserID, TokenValue) VALUES (?, ?)', [user.UserID, token]);
 
         res.json({ message: "Login successful", user: { userName: user.userName, email: user.email }, token });
         return; // Return after sending the response
