@@ -14,13 +14,15 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "express-fileupload": "^1.5.1",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
     "@types/crypto-js": "^4.2.2",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "express-session": "^1.18.1",
     "jsonwebtoken": "^9.0.2",
     "mariadb": "^3.4.2",
-    "path": "^0.12.7",
     "swagger-autogen": "^2.23.7",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
@@ -32,6 +34,7 @@
     "@types/jsonwebtoken": "^9.0.9",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.8",
+    "@types/express-fileupload": "^1.5.1",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
