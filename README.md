@@ -13,7 +13,7 @@
 - [ ] analyze and filter logs 
 - [ ] permanet filter rules
 - [ ] simple UI
-- [ ] User Authentication and Authorization
+- [x] User Authentication and Authorization
 - [ ] prepare filtered logs for checkmk, zabbix and Prometheus 
 - [ ] send logs as usable data to those systems  
 

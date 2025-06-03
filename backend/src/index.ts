@@ -5,7 +5,7 @@ import SwaggerDocument from "./api-doc/swagger-output.json"
 import { deleteUsers, getUsers, postUsers, putUsers, getUsersById } from './routes/users';
 import { login, logout, reset, authStatus, authCheck } from './routes/auth';
 import configObj from './utils/config';
-import { postMetrics, upload } from './routes/metrics';
+import { deleteSettings, getSettings, postMetrics, putSettings, upload } from './routes/metrics';
 import session from "express-session";
 import fileUpload, {UploadedFile} from "express-fileupload"
 
@@ -42,9 +42,10 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(SwaggerDocument));
 
 // Users
 apiRouter.get("/users", getUsers)
-apiRouter.get("/users/:id", getUsersById)
-apiRouter.post("/users", postUsers)
 
+apiRouter.get("/users/:id", getUsersById)
+
+apiRouter.post("/users", postUsers)
 
 apiRouter.put("/users/:id", putUsers)
 
@@ -52,17 +53,17 @@ apiRouter.delete("/users/:id", deleteUsers)
 
 
 //Metrics
-// apiRouter.post("/metrics", postMetrics)
+apiRouter.post("/metrics", postMetrics)
 
-// apiRouter.post("/metrics/upload", upload)
+apiRouter.post("/metrics/upload", upload)
 
-// apiRouter.post("/metrics/settings")
+apiRouter.post("/metrics/settings", postMetrics)
 
-// apiRouter.put("/metrics/settings")
+apiRouter.put("/metrics/settings", putSettings)
 
-// apiRouter.get("/metrics/settings")
+apiRouter.get("/metrics/settings", getSettings)
 
-// apiRouter.delete("/metrics/settings")
+apiRouter.delete("/metrics/settings", deleteSettings)
 
 
 

@@ -1,0 +1,85 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0" version="27.0.9">
+  <diagram name="Seite-1" id="EV1lDNHgKO2x-QEifNBX">
+    <mxGraphModel dx="1188" dy="656" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="6CuDUeAFUbtcxFlA2JQm-10" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="6CuDUeAFUbtcxFlA2JQm-1" target="6CuDUeAFUbtcxFlA2JQm-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6CuDUeAFUbtcxFlA2JQm-14" value="Try to Login" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="6CuDUeAFUbtcxFlA2JQm-10">
+          <mxGeometry x="-0.1677" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6CuDUeAFUbtcxFlA2JQm-11" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="6CuDUeAFUbtcxFlA2JQm-1" target="6CuDUeAFUbtcxFlA2JQm-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6CuDUeAFUbtcxFlA2JQm-15" value="Try Logout" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="6CuDUeAFUbtcxFlA2JQm-11">
+          <mxGeometry x="-0.1006" y="1" relative="1" as="geometry">
+            <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6CuDUeAFUbtcxFlA2JQm-13" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="6CuDUeAFUbtcxFlA2JQm-1" target="6CuDUeAFUbtcxFlA2JQm-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6CuDUeAFUbtcxFlA2JQm-17" value="Try to Reset your password" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="6CuDUeAFUbtcxFlA2JQm-13">
+          <mxGeometry x="-0.3385" y="-4" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6CuDUeAFUbtcxFlA2JQm-28" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="6CuDUeAFUbtcxFlA2JQm-1" target="6CuDUeAFUbtcxFlA2JQm-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6CuDUeAFUbtcxFlA2JQm-1" value="User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="30" y="290" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="6CuDUeAFUbtcxFlA2JQm-19" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="6CuDUeAFUbtcxFlA2JQm-2" target="6CuDUeAFUbtcxFlA2JQm-18">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="670" y="144.83333333333337" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6CuDUeAFUbtcxFlA2JQm-2" value="Login" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="110" width="140" height="70" as="geometry" />
+        </mxCell>
+        <object placeholders="1" c4Name="API" c4Type="SystemScopeBoundary" c4Application="auth" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;&lt;div style=&quot;text-align: left&quot;&gt;%c4Name%&lt;/div&gt;&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left&quot;&gt;[%c4Application%]&lt;/div&gt;" id="6CuDUeAFUbtcxFlA2JQm-3">
+          <mxCell style="rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1" parent="1">
+            <mxGeometry x="280" y="80" width="360" height="440" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="6CuDUeAFUbtcxFlA2JQm-5" value="Logout" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="210" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="6CuDUeAFUbtcxFlA2JQm-6" value="Status" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="310" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="6CuDUeAFUbtcxFlA2JQm-7" value="Reset" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="385" y="410" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="6CuDUeAFUbtcxFlA2JQm-18" value="authentication" style="shape=umlActor;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="680" y="140" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="6CuDUeAFUbtcxFlA2JQm-26" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="6CuDUeAFUbtcxFlA2JQm-5" target="6CuDUeAFUbtcxFlA2JQm-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6CuDUeAFUbtcxFlA2JQm-27" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="6CuDUeAFUbtcxFlA2JQm-6" target="6CuDUeAFUbtcxFlA2JQm-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6CuDUeAFUbtcxFlA2JQm-29" value="Request and resive current Token status" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="6CuDUeAFUbtcxFlA2JQm-27">
+          <mxGeometry x="-0.0605" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6CuDUeAFUbtcxFlA2JQm-30" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="6CuDUeAFUbtcxFlA2JQm-6" target="6CuDUeAFUbtcxFlA2JQm-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6CuDUeAFUbtcxFlA2JQm-31" value="Reset service" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="710" y="380" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="6CuDUeAFUbtcxFlA2JQm-32" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="6CuDUeAFUbtcxFlA2JQm-7" target="6CuDUeAFUbtcxFlA2JQm-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

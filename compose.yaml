@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   webapp:
-    image: your-webapp-image:latest
+    image: your-webapp-image:latest #todo put a image on github and use it here
     container_name: webapp
     ports:
       - "8080:8080"

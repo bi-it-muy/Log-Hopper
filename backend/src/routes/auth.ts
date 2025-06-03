@@ -129,47 +129,44 @@ export async function login(req: Request, res: Response, next: NextFunction) {
 
 //Get Function
 export async function authStatus(req: Request, res: Response) {
-    // TODO: Dont! Assume token is sent in Authorization header as: Bearer <token>
-
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
         res.status(401).json({ error: "Authorization header missing" });
         return;
-
     }
-
 
     const token = authHeader.split(' ')[1];
 
     if (!token) {
-
         res.status(401).json({ error: "Token missing" });
-
         return;
-
     }
 
+    try {
+        const decoded = verify(token, SECRET_KEY) as { userId: string };
 
-    verify(token, SECRET_KEY, (err, decoded) => {
-
-        if (err) {
-            res.status(401).json({ error: "Invalid or expired token" });
+        if (!decoded.userId) {
+            res.status(403).json({ error: "Malformed token" });
             return;
         }
 
+        // Check if the token exists in the database
+        const check = await manager.executeQuery(
+            'SELECT 1 FROM TOKENS WHERE UserID = ? AND TokenValue = ? LIMIT 1',
+            [decoded.userId, token]
+        );
 
-        // `decoded` is of type string or object, assert object here
+        if (check.length === 0) {
+            res.status(403).json({ error: "Token not found in database" });
+            return;
+        }
 
-        const decodedPayload = decoded as any;
-
-
-        res.status(200).json({
-            message: "Valid Token"
-        });
-
-    });
-
+        res.status(200).json({ message: "Valid Token", userId: decoded.userId });
+    } catch (err) {
+        console.error("Error verifying token:", err);
+        res.status(403).json({ error: "Invalid or expired token" });
+    }
 }
 
 //Post Function
